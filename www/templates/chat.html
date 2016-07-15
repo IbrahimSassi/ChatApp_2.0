@@ -4,7 +4,7 @@
         <p class="title">{{status_message}}</p>
     </div>
 
-    <ion-content class="has-subheader has-footer">
+    <ion-content class="has-subheader has-footer" delegate-handle="mainScroll">
         <ion-list class="list">
             <li ng-repeat="msg in messages"
                 ng-class="{'item item-avatar-right item-text-wrap nopadding' :

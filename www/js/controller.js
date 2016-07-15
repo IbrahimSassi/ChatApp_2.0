@@ -13,7 +13,7 @@ angular.module('chatApp.controllers', [])
         }
     })
 
-    .controller('ChatController',function ($scope,$state,$stateParams,Socket) {
+    .controller('ChatController',function ($scope,$state,$stateParams,Socket,$ionicScrollDelegate) {
         $scope.nickname = $stateParams.nickname;
         $scope.messages=[];
 
@@ -35,7 +35,11 @@ angular.module('chatApp.controllers', [])
         });
         
         Socket.on("MessageReceived", function (dataFromServer) {
-            $scope.messages.push(dataFromServer)
+            $scope.messages.push(dataFromServer);
+
+            //auto Scroling
+            $ionicScrollDelegate.$getByHandle('mainScroll').scrollBottom(true);
+
         })
 
 
