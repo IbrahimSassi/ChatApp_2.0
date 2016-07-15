@@ -13,7 +13,11 @@ angular.module('chatApp.controllers', [])
         }
     })
 
-    .controller('ChatController',function ($scope,$state,$stateParams,Socket,$ionicScrollDelegate,$sce) {
+    .controller('ChatController',function ($scope,$state,
+                                           $stateParams,Socket,
+                                           $ionicScrollDelegate,
+                                           $sce,
+                                           $cordovaMedia) {
         $scope.nickname = $stateParams.nickname;
         $scope.messages=[];
 
@@ -40,11 +44,49 @@ angular.module('chatApp.controllers', [])
             dataFromServer.message = $sce.trustAsHtml(dataFromServer.message);
 
             $scope.messages.push(dataFromServer);
+            if($scope.socketId == dataFromServer.socketId)
+            {
+                playAudio("audio/outgoing.mp3");
+            }
+            else
+            {
+                playAudio("audio/outgoing.mp3");
+            }
 
             //auto Scroling
             $ionicScrollDelegate.$getByHandle('mainScroll').scrollBottom(true);
 
         })
+
+
+
+
+        function playAudio(src){
+
+            if(ionic.Platform.isAndroid() || ionic.Platform.isIOS())
+            {
+                var newUrl = '';
+                if (ionic.Platform.isAndroid())
+                {
+                    newUrl = '/android_asset/www/'+src;
+                }
+                else
+                {
+                    newUrl= src;
+                }
+
+                var media = $cordovaMedia.newMedia(newUrl);
+                media.play();
+            }
+            else
+            {
+                new Audio(src).play();
+            }
+
+
+
+
+        }
 
 
         $scope.sendMessage = function () {

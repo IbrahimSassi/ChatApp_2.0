@@ -20,7 +20,8 @@
 
 .bubbleLeft{
     position: relative;
-    width: 100%;
+    display: inline-block;
+    max-width: 100%;
     min-height: 50px;
     padding: 5px;
     background: #F8BBD0;
@@ -49,7 +50,8 @@
 
 .bubbleRight{
     position: relative;
-    width: 100%;
+    display: inline-block;
+    max-width: 100%;
     min-height: 50px;
     padding: 5px;
     background: #C5CAE9;

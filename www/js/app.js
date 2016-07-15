@@ -7,6 +7,7 @@ angular.module('chatApp', [
     'ionic',
     'btford.socket-io',
     'ngSanitize',
+    'ngCordova',
     'chatApp.controllers'])
 
 .run(function($ionicPlatform) {
