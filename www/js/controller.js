@@ -13,7 +13,7 @@ angular.module('chatApp.controllers', [])
         }
     })
 
-    .controller('ChatController',function ($scope,$state,$stateParams,Socket,$ionicScrollDelegate) {
+    .controller('ChatController',function ($scope,$state,$stateParams,Socket,$ionicScrollDelegate,$sce) {
         $scope.nickname = $stateParams.nickname;
         $scope.messages=[];
 
@@ -35,6 +35,10 @@ angular.module('chatApp.controllers', [])
         });
         
         Socket.on("MessageReceived", function (dataFromServer) {
+
+            dataFromServer.message = fillWithEmoticons(dataFromServer.message);
+            dataFromServer.message = $sce.trustAsHtml(dataFromServer.message);
+
             $scope.messages.push(dataFromServer);
 
             //auto Scroling
@@ -61,6 +65,19 @@ angular.module('chatApp.controllers', [])
             $scope.message = "";
 
         }
+
+
+         function fillWithEmoticons(message){
+             //:p
+             message = message.replace(/\(y\)/g, "<img src='../img/emoticons/32 (2).png' width='25px' height='25px' />");
+             message = message.replace(/\:p/g, "<img src='../img/emoticons/32 (13).png' width='25px' height='25px' />");
+             message = message.replace(/\;\)/g, "<img src='../img/emoticons/32 (17).png' width='25px' height='25px' />");
+             message = message.replace(/\:D/g, "<img src='../img/emoticons/32 (20).png' width='25px' height='25px' />");
+             message = message.replace(/\:\)/g, "<img src='../img/emoticons/32 (36).png' width='25px' height='25px' />");
+             message = message.replace(/\:\(/g, "<img src='../img/emoticons/32 (11).png' width='25px' height='25px' />");
+             message = message.replace(/\♥/g, "<img src='../img/emoticons/32 (37).png' width='25px' height='25px' />");
+             return message;
+         }
 
 
         $scope.getUsernameColor = function(username){
