@@ -1,0 +1,20 @@
+<ion-view ng-controller="ChatController" title='<h2>Chatting as {{nickname}}</h2>'>
+
+    <div class="bar bar-subheader">
+        <p class="title">{{message}}</p>
+    </div>
+
+    <ion-content>
+
+    </ion-content>
+
+    <div class="bar bar-footer item-input-inset footer-item-input-inset">
+        <label class="item-input-wrapper" >
+            <i class="icon ion-android-chat placeholder-icon"></i>
+            <input type="text" placeholder="Enter Your Message .." ng-model="message"/>
+        </label>
+
+        <button class="button button-dark button-clear ion-android-send icon"
+                ng-click="sendMessage()"></button>
+    </div>
+</ion-view>

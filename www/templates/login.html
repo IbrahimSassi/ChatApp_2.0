@@ -1,0 +1,18 @@
+<ion-view ng-controller="LoginController" title="Welcome To Chat App">
+
+    <ion-content>
+        <div class="list">
+            <div class="item item-input padding">
+                <label class="item-input-wrapper">
+                    <input type="text" placeholder="Enter Your Name .." ng-model="nickname"/>
+                </label>
+                <button
+                    class="button button-small button-dark icon icon-right ion-log-in"
+                    ng-click="join(nickname)">Login
+                    </button>
+            </div>
+
+
+        </div>
+    </ion-content>
+</ion-view>
