@@ -1,20 +1,37 @@
-<ion-view ng-controller="ChatController" title='<h2>Chatting as {{nickname}}</h2>'>
+<ion-view ng-controller="ChatController" title='Chatting as {{nickname}}'>
 
     <div class="bar bar-subheader">
-        <p class="title">{{message}}</p>
+        <p class="title">{{status_message}}</p>
     </div>
 
-    <ion-content>
-
+    <ion-content class="has-subheader has-footer">
+        <ion-list class="list">
+            <li ng-repeat="msg in messages"
+                ng-class="{'item item-avatar-right item-text-wrap nopadding' :
+                 (socketId == msg.socketId) && !msg.isLog ,
+                        'item item-avatar-left item-text-wrap nopadding' :
+                         (socketId != msg.socketId)&& !msg.isLog,
+                         'item item-divider noPadding noBg':msg.isLog}">
+                <img ng-hide="msg.isLog" src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/ce54bf11889067.562541ef7cde4.png" alt=""/>
+                <div ng-class="{'bubbleRight': (socketId == msg.socketId) && !msg.isLog ,
+                                'bubbleLeft':(socketId != msg.socketId)&& !msg.isLog}">
+                    <h2 ng-hide="msg.isLog"><b style="color: {{msg.color}}">{{msg.sender}} :</b> </h2>
+                    <p ng-hide="msg.isLog">{{msg.message}}</p>
+                    <p style="text-align: center;color: {{msg.color}}" ng-show="msg.isLog">{{msg.message}}</p>
+                </div>
+            </li>
+        </ion-list>
     </ion-content>
 
-    <div class="bar bar-footer item-input-inset footer-item-input-inset">
-        <label class="item-input-wrapper" >
-            <i class="icon ion-android-chat placeholder-icon"></i>
-            <input type="text" placeholder="Enter Your Message .." ng-model="message"/>
-        </label>
+    <form ng-submit="sendMessage()">
+        <div class="bar bar-footer item-input-inset footer-item-input-inset">
+            <label class="item-input-wrapper" >
+                <i class="icon ion-android-chat placeholder-icon"></i>
+                <input required="true" type="text" placeholder="Enter Your Message .." ng-model="message"/>
+            </label>
 
-        <button class="button button-dark button-clear ion-android-send icon"
-                ng-click="sendMessage()"></button>
-    </div>
+            <button type="submit" class="button button-dark button-clear ion-android-send icon"
+                    ></button>
+        </div>
+    </form>
 </ion-view>

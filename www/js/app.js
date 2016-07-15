@@ -5,6 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 angular.module('chatApp', [
     'ionic',
+    'btford.socket-io',
     'chatApp.controllers'])
 
 .run(function($ionicPlatform) {
@@ -41,3 +42,16 @@ angular.module('chatApp', [
 
         $urlRouterProvider.otherwise('/login');
     })
+
+
+
+.factory('Socket', function (socketFactory) {
+    var myIoSocket = io.connect('https://chatapp-ibrahimsassi.c9users.io');
+
+    mySocket = socketFactory({
+        ioSocket: myIoSocket
+    });
+
+    return mySocket;
+})
+

@@ -1,1 +1,87 @@
 /* Empty. Add your own CSS if you like */
+
+
+.item-avatar-right {
+    text-align:  right !important;
+}
+
+.bar-footer.item-input-inset{
+    margin-bottom: 10px !important;
+}
+
+.bar.item-input-inset .item-input-wrapper{
+    height: 50px;
+}
+
+.custom-send{
+    font-size: 32px !important;
+    color: #f44336 !important;
+}
+
+.bubbleLeft{
+    position: relative;
+    width: 100%;
+    min-height: 50px;
+    padding: 5px;
+    background: #F8BBD0;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    box-shadow: -2px 2px 2px 0 rgba(178,178,178,.4);
+    margin-bottom: 5px;
+}
+
+.bubbleLeft:after{
+    content: '';
+    position: absolute;
+    border-style: solid;
+    border-width: 7px 20px 7px 0;
+    border-color: transparent #F8BBD0;
+    display: block;
+    width: 0;
+    z-index: 1;
+    margin-top: -7px;
+    left: -20px;
+    top: 40px;
+
+}
+
+
+.bubbleRight{
+    position: relative;
+    width: 100%;
+    min-height: 50px;
+    padding: 5px;
+    background: #C5CAE9;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    box-shadow: -2px 2px 2px 0 rgba(178,178,178,.4);
+    margin-bottom: 5px;
+}
+
+.bubbleRight:after{
+    content: '';
+    position: absolute;
+    border-style: solid;
+    border-width: 7px 0 7px 20px ;
+    border-color: transparent #C5CAE9;
+    display: block;
+    width: 0;
+    z-index: 1;
+    margin-top: -7px;
+    right: -20px;
+    top: 40px;
+
+}
+
+.noPadding{
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+    border: none !important;
+}
+
+
+.noBg{
+    background-color: transparent !important;
+}
