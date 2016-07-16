@@ -1,7 +1,10 @@
 angular.module('chatApp.controllers', [])
 
 
-    .controller('LoginController',function ($scope,$state) {
+    .controller('LoginController',function ($scope,
+                                            $state,
+                                            $cordovaOauth,
+                                            $http) {
 
         $scope.join = function (nickname) {
 
@@ -11,7 +14,51 @@ angular.module('chatApp.controllers', [])
                 });
             }
         }
+
+
+        //LoginWithFacebook
+
+        $scope.user ={};
+        $scope.LoginWithFacebook = function() {
+            $cordovaOauth.facebook("CLient ID", ["email"]).then(function(result) {
+                // results
+                console.log(result);
+                $http.get('https://graph.facebook.com/v2.7/me?field=id,name,picture&access_token='+ result.access_token)
+                    .success(function (data,status,header,config) {
+                    $scope.user.fullName= data.name;
+                    $scope.user.displayPicture = data.picture.data.url;
+                    alert($scope.user.fullName + " " + $scope.user.displayPicture);
+
+                })
+            }, function(error) {
+                console.log(error);
+            });
+        }
+
+
+
+
+
+
+
+
+
     })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     .controller('ChatController',function ($scope,$state,
                                            $stateParams,Socket,
