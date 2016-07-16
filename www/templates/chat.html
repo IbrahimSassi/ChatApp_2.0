@@ -4,10 +4,10 @@
         <p class="title">{{status_message}}</p>
     </div>
 
-    <ion-content  class="has-subheader has-footer" delegate-handle="mainScroll"
+    <ion-content id="chat_bg"  class="has-subheader has-footer" delegate-handle="mainScroll"
                  style="margin-bottom: 15px !important;margin-top: 10px !important;">
         <ion-list class="list">
-            <li ng-repeat="msg in messages"
+            <li id="msg_bg" ng-repeat="msg in messages"
                 ng-class="{'item item-avatar-right item-text-wrap nopadding' :
                  (socketId == msg.socketId) && !msg.isLog ,
                         'item item-avatar-left item-text-wrap nopadding' :
