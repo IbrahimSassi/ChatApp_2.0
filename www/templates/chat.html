@@ -13,7 +13,7 @@
                         'item item-avatar-left item-text-wrap nopadding' :
                          (socketId != msg.socketId)&& !msg.isLog,
                          'item item-divider noPadding noBg':msg.isLog}">
-                <img ng-hide="msg.isLog" src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/ce54bf11889067.562541ef7cde4.png" alt=""/>
+                <img ng-hide="msg.isLog" src="{{msg.displayPicture}}" alt=""/>
                 <div ng-class="{'bubbleRight': (socketId == msg.socketId) && !msg.isLog ,
                                 'bubbleLeft':(socketId != msg.socketId)&& !msg.isLog}">
                     <h2 ng-hide="msg.isLog"><b style="color: {{msg.color}}">{{msg.sender}} :</b> </h2>

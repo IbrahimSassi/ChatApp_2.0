@@ -24,6 +24,7 @@ angular.module('chatApp.controllers', [])
         $scope.status_message = "Welcome To ChatApp";
         $scope.nickname = $stateParams.nickname;
         $scope.messages=[];
+        $scope.displayPicture = 'https://mir-s3-cdn-cf.behance.net/project_modules/disp/a9475211889067.562541caf0859.png';
 
         var COLORS = ['#f44336','#E91E63','#9C27B0','#3F51B5','#009688'];
 
@@ -36,6 +37,7 @@ angular.module('chatApp.controllers', [])
                 sender :$scope.nickname,
                 socketId :$scope.socketId,
                 isLog:true,
+                displayPicture :'',
                 color : $scope.getUsernameColor($scope.nickname)
             };
 
@@ -144,6 +146,7 @@ angular.module('chatApp.controllers', [])
                 message :'',
                 socketId : '',
                 isLog: false,
+                displayPicture:'',
                 color : ''
             };
 
@@ -151,6 +154,7 @@ angular.module('chatApp.controllers', [])
             newMessage.message = $scope.message;
             newMessage.socketId =$scope.socketId;
             newMessage.isLog = false;
+            newMessage.displayPicture = $scope.displayPicture;
             newMessage.color = $scope.getUsernameColor($scope.nickname);
             Socket.emit("Message", newMessage);
             $scope.message = "";
