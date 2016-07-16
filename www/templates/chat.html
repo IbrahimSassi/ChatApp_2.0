@@ -28,7 +28,9 @@
         <div class="bar bar-footer item-input-inset footer-item-input-inset">
             <label class="item-input-wrapper" >
                 <i class="icon ion-android-chat placeholder-icon"></i>
-                <input required="true" type="text" placeholder="Enter Your Message .." ng-model="message"/>
+                <input required="true" type="text" placeholder="Enter Your Message .."
+                       ng-model="message"
+                        ng-change="updateTyping()"/>
             </label>
 
             <button type="submit" class="button button-dark button-clear ion-android-send icon"

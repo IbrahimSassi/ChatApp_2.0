@@ -17,7 +17,11 @@ angular.module('chatApp.controllers', [])
                                            $stateParams,Socket,
                                            $ionicScrollDelegate,
                                            $sce,
+                                           $timeout,
                                            $cordovaMedia) {
+
+
+        $scope.status_message = "Welcome To ChatApp";
         $scope.nickname = $stateParams.nickname;
         $scope.messages=[];
 
@@ -57,6 +61,51 @@ angular.module('chatApp.controllers', [])
             $ionicScrollDelegate.$getByHandle('mainScroll').scrollBottom(true);
 
         })
+
+
+
+
+
+
+        var typing = false;
+        var TYPING_TIMER_LENGTH =3000;
+
+
+
+        //Typing Fon
+
+        $scope.updateTyping = function () {
+            if(!typing){
+                typing = true;
+                Socket.emit("typing", {socketId : $scope.socketId,
+                    sender: $scope.nickname});
+
+            }
+
+            var lastTypingTime = (new Date()).getTime();
+
+            $timeout(function () {
+                var timeDiff = (new Date()).getTime()- lastTypingTime ;
+
+                if(timeDiff >= TYPING_TIMER_LENGTH && typing){
+                    Socket.emit('StopTyping',{socketId:$scope.socketId,
+                                                sender:$scope.nickname});
+                    typing=false;
+                }
+
+            },TYPING_TIMER_LENGTH);
+        }
+
+
+
+        Socket.on('StopTyping', function (data) {
+            $scope.status_message = "Welcome to Chat App";
+        });
+
+        Socket.on('typing', function (data) {
+            $scope.status_message= data.sender + ' is typing';
+        });
+
 
 
 
