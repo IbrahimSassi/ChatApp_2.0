@@ -1,21 +1,22 @@
 <ion-view ng-controller="LoginController" title="Welcome To Chat App">
 
-    <ion-content id="login_bg" >
+    <ion-content id="login_bg">
         <div class="list">
             <div class="item item-input padding">
                 <label class="item-input-wrapper">
                     <input type="text" placeholder="Enter Your Name .." ng-model="nickname"/>
                 </label>
                 <button
-                    class="button button-small button-dark icon icon-right ion-log-in"
-                    ng-click="join(nickname)">Login
-                    </button>
+                        class="button button-small button-dark icon icon-right ion-log-in"
+                        ng-click="join(nickname)">Login
+                </button>
             </div>
         </div>
 
         <button class="button icon-left ion-social-facebook button-block"
                 style="margin-left: 2%;background-color: #3b5998;color: #FFF;border: none;width: 95% !important;"
-                 ng-click="LoginWithFacebook()">Login With Facebook</button>
+                ng-click="LoginWithFacebook()">Login With Facebook
+        </button>
 
 
     </ion-content>
